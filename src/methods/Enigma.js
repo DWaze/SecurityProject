@@ -7,7 +7,7 @@ function enigmaEncryption(
 ) {
   if (letter.length < 1) {
     console.log("no letter entered");
-    return;
+    return null;
   }
   if (keysettings.length !== 3) {
     console.log("Key settings must consist of 3 uppercase characters.");
@@ -15,23 +15,23 @@ function enigmaEncryption(
   }
   if (ringsettings.length !== 3) {
     console.log("Ring settings must consist of 3 uppercase characters.");
-    return;
+    return null;
   }
   if (plugboardsettings.length > 26) {
     console.log(
       "There cannot be more than 13 pairs in the plugboard settings."
     );
-    return;
+    return null;
   }
   if (plugboardsettings.length % 2 !== 0) {
     console.log(
       "There must be an even number of characters in the plugboard settings."
     );
-    return;
+    return null;
   }
   if (rotorsettings.length !== 3) {
     console.log("Rotor settings must consist of 3 numbers 1-9.");
-    return;
+    return null;
   }
 
   var rotors = rotorsettings.split("");

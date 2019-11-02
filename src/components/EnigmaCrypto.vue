@@ -89,6 +89,14 @@
           :input="input"
         />
         <br />
+
+        <b-form-input
+          id="input-1"
+          v-model="plugboard"
+          required
+          placeholder="Enter plugboard configuration"
+        ></b-form-input>
+        <br />
         <b-button variant="danger" @click="resetView">Reset</b-button>
       </div>
     </div>
@@ -132,7 +140,9 @@ export default {
     enigmaEncryption,
     onChange(input) {
       console.log(input);
-      this.input = this.input + this.encryptedResult[0];
+      if (this.encryptedResult) {
+        this.input = this.input + this.encryptedResult[0];
+      }
     },
     onKeyPress(button) {
       this.letter = button;
@@ -142,20 +152,31 @@ export default {
         parseInt(this.form.key2),
         parseInt(this.form.key3)
       ];
-      console.log("keySetting________ " + this.key_setting);
-      this.encryptedResult = this.enigmaEncryption(
-        this.letter,
-        this.key_setting,
-        this.ring_setting,
-        this.rotors,
-        this.plugboard
-      );
-      this.key_setting = this.encryptedResult[1];
-      this.form.key1 = this.key_setting[0];
-      this.form.key2 = this.key_setting[1];
-      this.form.key3 = this.key_setting[2];
-      this.ring_setting = this.encryptedResult[2];
-      console.log(this.encryptedResult[0]);
+
+      if (
+        !this.plugboard.split("").some(function(v, i, a) {
+          return a.lastIndexOf(v) != i;
+        })
+      ) {
+        console.log("keySetting________ " + this.key_setting);
+        this.encryptedResult = this.enigmaEncryption(
+          this.letter,
+          this.key_setting,
+          this.ring_setting,
+          this.rotors,
+          this.plugboard
+        );
+        if (this.encryptedResult) {
+          this.key_setting = this.encryptedResult[1];
+          this.form.key1 = this.key_setting[0];
+          this.form.key2 = this.key_setting[1];
+          this.form.key3 = this.key_setting[2];
+          this.ring_setting = this.encryptedResult[2];
+          console.log(this.encryptedResult[0]);
+        }
+      } else {
+        this.encryptedResult = null;
+      }
     },
     onInputChange(input) {
       console.log(input);
