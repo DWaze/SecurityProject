@@ -1,24 +1,9 @@
 # untitled1
 
-## Project setup
-```
-npm install
-```
+## comment lancer le projet 
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+Le projet est hébergé dans firebase et vous pouvez y accéder en utilisant le lien ci-dessous : 
 
-### Compiles and minifies for production
-```
-npm run build
-```
+https://algebraic-fin-157613.firebaseapp.com/#/
 
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+Vous pouvez trouver comment exécuter le projet sur la page about du site web.
